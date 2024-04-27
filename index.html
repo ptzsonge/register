@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Registration Form</title>
+	<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+      <form action="" method="post" name="submit-to-google-sheet">
+        <h2>Registration</h2>
+          <div class="content">
+            <div class="input-box">
+              <label for="name">First Name:</label>
+              <input type="text" placeholder="Enter first name" name="firstname" required>
+            </div>
+
+            <div class="input-box">
+              <label for="name">Last Name:</label>
+              <input type="text" placeholder="Enter last name" name="lastname" required>
+            </div>
+             
+            <div class="input-box">
+              <label for="name">Class:</label>
+              <input type="text" placeholder="Enter Class name" name="class-name" required>
+            </div>
+
+            <div class="input-box">
+              <label for="name">Date Of Birth:</label>
+              <input type="date" placeholder="Enter Date of Birth" name="dob" required>
+            </div>
+
+            <div class="input-box">
+              <label for="name">Phone Contact:</label>
+              <input type="phone" placeholder="Valid Phone Number" name="phone" required>
+            </div>
+
+            <div class="input-box">
+              <label for="name">Email Address:</label>
+              <input type="email" placeholder="Email Address - if any" name="email">
+            </div>
+
+            <div class="input-box">
+              <label for="name">District:</label>
+              <input type="text" placeholder="Home District" name="district" required>
+            </div>
+
+            <div class="input-box">
+              <label for="name">Province:</label>
+              <input type="text" placeholder="Home Province" name="province" required>
+            </div>
+
+            <div class="input-box">
+              <label for="name">Last School Attended:</label>
+              <input type="text" placeholder="Previous School" name="last-school" required>
+            </div>
+
+            <div class="input-box">
+              <label for="name">Emergency Contact:</label>
+              <input type="phone" placeholder="Emergency Contact Number" name="emergency-contact" required>
+            </div>
+
+            <div class="input-box">
+              <label for="name">Contact Person:</label>
+              <input type="text" placeholder="Contact Person" name="contact-person" required>
+            </div>
+
+            <div class="input-box">
+              <label for="name">Denomination:</label>
+              <input type="text" placeholder="Enter denomination" name="denomination" required>
+            </div>
+
+            <div class="input-box">
+              <label for="name">Fee Amount Paid:</label>
+              <input type="number" placeholder="Fee Amount Paid" name="fee-paid" required>
+            </div> 
+            
+            <div class="input-box">
+              <label for="name">Date Of Payment:</label>
+              <input type="date" placeholder="Enter Date of Birth" name="payment-date" required>
+            </div>
+
+            <div class="input-box">
+              <label for="name">Comment:</label>
+              <textarea id="message" rows="4" placeholder="Additional Information" name="comments"></textarea>
+            </div>
+
+            <span class="gender-title">Gender:</span>
+            <div class="gender-category">
+                <input type="radio" id="male" name="gender" value="M" required>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="F">
+                <label for="female">Female</label>
+            </div>            
+          </div>
+          <div class="button-container">
+            <button type="submit">Submit</button>
+          </div>
+      </form>
+    </div>
+    <span id="msg"></span>      
+    </div>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyAzAyFOsJ6-5YaFe0X-9HKjxlKCM-kbNY1yXw7h5GDlZT4sWGrrArNqFXbUy66i-x4/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById("msg")
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                msg.innerHTML ="Submit Successfully!"
+                setTimeout(function(){
+                    msg.innerHTML =""
+                },5000)
+                form.reset()
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+</body>
+</html>
