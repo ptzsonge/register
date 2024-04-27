@@ -108,7 +108,7 @@ h2{
 
 @media(max-width:600px){
   body{   
-    height: 310vh;
+    height: 295vh;
   }
    .container{
     min-width: 280px;
